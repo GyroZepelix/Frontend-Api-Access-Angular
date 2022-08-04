@@ -1,0 +1,18 @@
+<table>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Active</th>
+            <th>Files</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    <tr *ngFor="let customer of customers">
+        <th>{{customer.firstName}}</th>
+        <th>{{customer.lastName}}</th>
+        <th [style.color]="customer.active ? 'green' : 'red'">{{customer.active}}</th>
+        <th><app-button name="?" (buttonPressedEvent)="showFile()"></app-button></th>
+        <th><app-button name="?" (buttonPressedEvent)="editCustomer()"></app-button></th>
+        <th><app-button name="?" (buttonPressedEvent)="deleteCustomer()"></app-button></th>
+    </tr>
+</table>

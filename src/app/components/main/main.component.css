@@ -1,0 +1,13 @@
+main {
+    padding-top: 50px;
+    background-color: #c5d3a7;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: calc(100vh - 150px);
+}
