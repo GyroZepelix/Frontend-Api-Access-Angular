@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { TableComponent } from '../table/table.component';
 
 @Component({
   selector: 'app-main',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  @ViewChild('table') table: TableComponent;
+
+  mainAddCustomer() {
+    this.table.addCust();
+  }
 
   constructor() { }
 

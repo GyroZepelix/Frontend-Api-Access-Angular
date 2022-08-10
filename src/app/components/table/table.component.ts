@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { delay } from 'rxjs';
 import { Customer } from 'src/app/Customer';
 import { RESTserviceService } from 'src/app/services/restservice.service';
+import { InputComponent } from '../input/input.component';
 
 @Component({
   selector: 'app-table',
@@ -8,25 +10,65 @@ import { RESTserviceService } from 'src/app/services/restservice.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  @ViewChild('EFN') EFN: InputComponent;
+  @ViewChild('ELN') ELN: InputComponent;
+  @ViewChild('EA') EA: InputComponent;
 
   public customers: Customer[] = [];
-  constructor(private RESTService: RESTserviceService) { }
+  public tableMode: string;
+  public editedCustomer: Customer = new Customer();
+  public isEditVisible: boolean = false;
 
+  constructor(private RESTService: RESTserviceService) { }
   showFile() {
     console.log("test");
   }
 
-  deleteCustomer () {
+  deleteCust(id: number) {
+    console.log(id);
+    this.RESTService.deleteCustomer(id).subscribe();
+    this.ngOnInit();
+    window.location.reload();
+  }
+
+  editCust(id: number) {
+    this.tableMode = "EDIT";
+    if (this.isEditVisible && this.editedCustomer.id == id) {
+      this.isEditVisible = false;
+    } else {
+      this.isEditVisible = true;
+    }
+    this.RESTService.getCustomerById(id).subscribe(customer => this.editedCustomer = customer);
 
   }
 
-  editCustomer() {
+  addCust() {
+    if (this.isEditVisible && this.tableMode == "ADD" ) {
+      this.isEditVisible = false;
+    } else {
+      this.isEditVisible = true;
+    }
+    this.tableMode = "ADD";
 
+    this.editedCustomer = new Customer;
+    this.editedCustomer.active = false;
+  }
+
+  acceptEdit(id: number) {
+    this.editedCustomer.firstName = this.EFN.getValue();
+    this.editedCustomer.lastName = this.ELN.getValue();
+    this.editedCustomer.active = this.EA.getValue();
+
+    if (this.tableMode == "EDIT") 
+      this.RESTService.replaceCustomer(this.editedCustomer).subscribe();
+    else 
+      this.RESTService.addCustomer(this.editedCustomer).subscribe();
+    window.location.reload();
   }
 
   ngOnInit(): void {
     this.RESTService.getCustomers().subscribe((customers) => (this.customers = customers));
-    console.log(this.customers);
+    
   }
 
 }

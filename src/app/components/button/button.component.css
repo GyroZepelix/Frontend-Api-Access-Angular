@@ -1,6 +1,6 @@
 button {
     background: #59A88E;
-    border: 1px solid #59A88E;
+    border: 2px solid #59A88E;
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
     box-sizing: border-box;
@@ -24,9 +24,9 @@ button {
 
 button:hover,
 button:active {
-    background-color: initial;
+    background-color: initial !important;
     background-position: 0 0;
-    color: #59A88E;
+    color: #444 !important;
 }
 
 button:active {

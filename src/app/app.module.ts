@@ -9,6 +9,8 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { MainComponent } from './components/main/main.component';
 import { ButtonComponent } from './components/button/button.component';
 import { HttpClientModule } from '@angular/common/http';
+import { InputComponent } from './components/input/input.component';
+import { FileTableComponent } from './components/file-table/file-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +19,9 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     DropdownComponent,
     MainComponent,
-    ButtonComponent
+    ButtonComponent,
+    InputComponent,
+    FileTableComponent
   ],
   imports: [
     BrowserModule,

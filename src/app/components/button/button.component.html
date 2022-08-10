@@ -1,1 +1,1 @@
-<button (click)="buttonPressed()">{{name}}</button>
+<button [ngStyle]="{'background-color': color, 'border-color': color, 'color' : invert ? '#444' : '#FFF'}"  (click)="buttonPressed()">{{name}}</button>

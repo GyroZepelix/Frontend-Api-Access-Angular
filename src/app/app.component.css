@@ -4,7 +4,7 @@
 
 .mainBody {
     display: grid;
-    grid-template-columns: 150px calc(100vw - 150px);
+    grid-template-columns: 150px calc(100% - 150px);
     grid-template-rows: 150px;
     
 
