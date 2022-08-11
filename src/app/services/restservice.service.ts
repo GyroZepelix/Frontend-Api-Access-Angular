@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer, CustomerStripped } from '../Customer';
 import { HttpClient } from '@angular/common/http'
+import { TheFile } from '../file';
 
 
 @Injectable({
@@ -42,5 +43,9 @@ export class RESTserviceService {
     console.log(this.customerStr);
 
     return this.http.put<CustomerStripped>(this.URL + 'customers/' + customer.id, this.customerStr);
+  }
+
+  getFilesFromCustomer(id?:number): Observable<TheFile[]> {
+    return this.http.get<TheFile[]>(this.URL + 'customers/' + id + '/files');
   }
 }

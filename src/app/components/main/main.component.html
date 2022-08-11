@@ -1,9 +1,6 @@
 <main>
     <div class="fileCustomerFlex">
-        <app-table #table></app-table>
-        <app-file-table></app-file-table>
+        <app-table (fileAccessedEvent)="showFile($event)" ></app-table>
+        <app-file-table #fileTable [ngStyle]="{'display': displayFile ? 'block':'none'}"></app-file-table>
     </div>
-
-
-    <app-button name="Add new Customer" color="#edca6b" invert="true" (buttonPressedEvent)="mainAddCustomer()"></app-button>
 </main>

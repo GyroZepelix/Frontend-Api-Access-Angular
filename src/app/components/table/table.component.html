@@ -16,11 +16,13 @@
         <th>{{customer.firstName}}</th>
         <th>{{customer.lastName}}</th>
         <th [style.color]="customer.active ? 'green' : 'red'">{{customer.active}}</th>
-        <th><app-button name="&#10004;" (buttonPressedEvent)="showFile()"></app-button></th>
+        <th><app-button name="&#10004;" (buttonPressedEvent)="showFile(customer.id)"></app-button></th>
         <th><app-button name="&#10004;" color="#4543bf" (buttonPressedEvent)="editCust(customer.id)"></app-button></th>
         <th><app-button name="&#10004;" color="#c92e2e" (buttonPressedEvent)="deleteCust(customer.id)"></app-button></th>
     </tr>
 </table>
+
+<app-button name="Add new Customer" color="#edca6b" invert="true" (buttonPressedEvent)="addCust()"></app-button>
 
 <table [style.display]="isEditVisible ? 'block' : 'none'">
     <tr>

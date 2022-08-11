@@ -1,14 +1,17 @@
 <table class="fileTable">
+    <tr><th>{{fileOwner.id}}</th></tr>
     <tr>
+        <th>Id</th>
         <th>Name</th>
         <th>Type</th>
         <th>Size</th>
         <th>Content</th>
     </tr>
-    <tr>
-        <th>slika</th>
-        <th>png</th>
-        <th>12.0kB</th>
+    <tr *ngFor="let file of theFiles">
+        <th>{{file.id}}</th>
+        <th>{{file.docName}}</th>
+        <th>{{file.docType}}</th>
+        <th>?</th>
         <th><app-button name="&dArr;" color="#68d7ed"></app-button></th>
     </tr>
 </table>

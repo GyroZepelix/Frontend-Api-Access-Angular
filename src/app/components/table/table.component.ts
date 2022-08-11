@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { OutletContext } from '@angular/router';
 import { delay } from 'rxjs';
 import { Customer } from 'src/app/Customer';
 import { RESTserviceService } from 'src/app/services/restservice.service';
@@ -10,6 +11,8 @@ import { InputComponent } from '../input/input.component';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+  @Output() fileAccessedEvent = new EventEmitter();
+
   @ViewChild('EFN') EFN: InputComponent;
   @ViewChild('ELN') ELN: InputComponent;
   @ViewChild('EA') EA: InputComponent;
@@ -20,8 +23,9 @@ export class TableComponent implements OnInit {
   public isEditVisible: boolean = false;
 
   constructor(private RESTService: RESTserviceService) { }
-  showFile() {
-    console.log("test");
+  
+  showFile(id: number) {
+    this.fileAccessedEvent.emit(id);
   }
 
   deleteCust(id: number) {
