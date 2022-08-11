@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer, CustomerStripped } from '../Customer';
-import { HttpClient } from '@angular/common/http'
-import { TheFile } from '../file';
+import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { TheFile } from '../File';
 
 
 @Injectable({
@@ -15,6 +15,14 @@ export class RESTserviceService {
   private URL: string = 'http://localhost:8080/'
 
   constructor(private http: HttpClient) { }
+
+  deleteFile(id:number) {
+    return this.http.delete(this.URL + 'customers/files/' + id)
+  }
+
+  getURL(): string {
+    return this.URL;
+  }
 
   getCustomerById(id?:number): Observable<Customer> {
     return this.http.get<Customer>(this.URL + 'customers/' + id);
@@ -47,5 +55,9 @@ export class RESTserviceService {
 
   getFilesFromCustomer(id?:number): Observable<TheFile[]> {
     return this.http.get<TheFile[]>(this.URL + 'customers/' + id + '/files');
+  }
+
+  uploadFile(file:FormData, id:number) {
+    return this.http.post<FormData>(this.URL + 'customers/' + id + '/files', file); 
   }
 }

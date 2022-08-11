@@ -11,13 +11,15 @@ export class InputComponent implements OnInit {
   @Input() name: string;
   @Input() type: string;
   @Input() value?: any;
+  file: File;
   constructor() { }
 
   ngOnInit(): void {
   }
 
   getValue() {
-    return this.value;
+    if (this.type == "file") return this.file;
+    else return this.value;
   }
 
 
@@ -28,6 +30,8 @@ export class InputComponent implements OnInit {
     } else if (this.type == "text") {
       this.value = event.target.value;
       console.log(this.value);
+    } else if (this.type == "file") {
+      this.file = event.target.files[0];
     }
     
   }
